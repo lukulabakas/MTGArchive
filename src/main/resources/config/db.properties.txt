@@ -1,0 +1,6 @@
+# Database Config File
+# Enter credentials here
+
+db.url=jdbc:postgresql://localhost:5432/MTGCardArchive
+db.user=postgres
+db.password=postgres

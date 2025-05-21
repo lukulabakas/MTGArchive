@@ -1,0 +1,7 @@
+# Database Config File
+# db.properties is automatically ignored by Git through .gitignore
+# Copy to db.properties and enter credentials
+
+db.url=
+db.user=
+db.password=
