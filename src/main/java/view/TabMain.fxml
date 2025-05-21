@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+
+<TabPane fx:id="tabMain" prefHeight="760.0" prefWidth="970.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TabMainController">
+   <tabs>
+      <Tab fx:id="cardCollectionTab" text="Card Collection" />
+ 	  <Tab fx:id="addSingleCardsTab" text="Add Single Cards" />
+   </tabs>
+</TabPane>

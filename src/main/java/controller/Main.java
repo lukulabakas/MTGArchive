@@ -1,8 +1,10 @@
 package controller;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 
+import api.ScryfallApiClient;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -32,7 +34,18 @@ public class Main extends Application {
 			this.primaryStage.setTitle("MTG Card Archive");
 			
 			initRootLayout();
-			showCardOverview();
+			showTabMain();
+			//test
+			ScryfallApiClient apiClient = new ScryfallApiClient();
+			try {
+				apiClient.fetchCardFromApi("Counterspell", "DSC");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 	
 	//to execute upon application termination
@@ -61,18 +74,18 @@ public class Main extends Application {
 	}
 	
 	//initialize the main gui contents
-	public void showCardOverview() {
+	public void showTabMain() {
 		try {
-			//load card overview
+			//load the TabPane that will hold the Tabs
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("/view/CardOverview.fxml"));
-			TabPane cardOVerview = loader.load();
+			loader.setLocation(Main.class.getResource("/view/TabMain.fxml"));
+			TabPane tabMain = loader.load();
 			
-			//set the loaded card overview into the center of the root layout
-			rootLayout.setCenter(cardOVerview);
+			//set the TabPane into the center of the root layout
+			rootLayout.setCenter(tabMain);
 			
 			//give the controller access to the main app
-			CardOverviewController controller = loader.getController();
+			TabMainController controller = loader.getController();
 			controller.setMainApp(this);
 		}catch(Exception e) {
 			e.printStackTrace();

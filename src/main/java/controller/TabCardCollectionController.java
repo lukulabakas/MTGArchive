@@ -16,7 +16,7 @@ import javafx.scene.layout.FlowPane;
 import model.Card;
 import persistence.CardDAO;
 
-public class CardOverviewController {
+public class TabCardCollectionController {
 
 	@FXML
 	private TextField cardNameField;
@@ -45,6 +45,7 @@ public class CardOverviewController {
 	//choosing card language
 	@FXML
 	private ComboBox<String> languageComboBox;
+	
 	@FXML
 	private FlowPane flowPane;
 	
@@ -53,7 +54,7 @@ public class CardOverviewController {
 
 	
 	//contructor
-	public CardOverviewController() {
+	public TabCardCollectionController() {
 		
 	}
 	
