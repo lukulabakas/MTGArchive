@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -10,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
@@ -48,6 +50,9 @@ public class TabCardCollectionController {
 	
 	@FXML
 	private FlowPane flowPane;
+	//label that displays the number of cards found out of cards in collection
+	@FXML
+	private Label numberCardsFound;
 	
 	//reference to the main application
 	private Main main;
@@ -86,12 +91,6 @@ public class TabCardCollectionController {
 			searchedCard.setCardType(cardTypeField.getText());
 			//set the cardColorIdentity
 			List<String> cardColorIdentityList = new ArrayList<>();
-			if(whiteCB.isSelected()) {
-				cardColorIdentityList.add("W");
-			}
-			if(blueCB.isSelected()) {
-				cardColorIdentityList.add("U");
-			}
 			if(blackCB.isSelected()) {
 				cardColorIdentityList.add("B");
 			}
@@ -100,6 +99,12 @@ public class TabCardCollectionController {
 			}
 			if(redCB.isSelected()) {
 				cardColorIdentityList.add("R");
+			}
+			if(blueCB.isSelected()) {
+				cardColorIdentityList.add("U");
+			}
+			if(whiteCB.isSelected()) {
+				cardColorIdentityList.add("W");
 			}
 			if(colorlessCB.isSelected()) {
 				cardColorIdentityList.add("");
@@ -117,19 +122,43 @@ public class TabCardCollectionController {
 			//retrieves all cards that match all values stored in searchedCard
 			List<Card> cards = new ArrayList<>();
 			cards = carddao.getCardsFromDB(searchedCard);
+			//helper variable to count number of cards found
+			int numberOfCardsFound = 0;
 			//iterate retrieved cards
 			for(Card card : cards) {
+				//add the number of copies of current card to total cards found
+				numberOfCardsFound += card.getCardQuantity();
 				//load for each card, create new cardPanel and add that panel to the flowPane
 				FXMLLoader loader = new FXMLLoader();
 				loader.setLocation(getClass().getResource("/view/cardPanel.fxml"));
 				BorderPane cardPanel = loader.load();
 				CardPanelController controller = loader.getController();
+				//setCardData sets all labels etc. of the CardPanel according to card attributes
 				controller.setCardData(card);
+				//give FlowPane to CardPanel as parent
+				controller.setParentFlowPane(flowPane);
 				flowPane.getChildren().add(cardPanel);
 			}
+			//update search count results
+			numberOfSearchResults(numberOfCardsFound);
 		} catch (SQLException e) {
+			//info to user that search failed
+			numberCardsFound.setText("Retrieving Cards failed");
 			e.printStackTrace();
 		} catch (IOException e) {
+			//info to user that search failed
+			numberCardsFound.setText("Retrieving Cards failed");
+			e.printStackTrace();
+		}
+	}
+	
+	private void numberOfSearchResults(int numberOfCardsFound) {
+		CardDAO carddao = new CardDAO();
+		try {
+			numberCardsFound.setText(numberOfCardsFound + " / " + carddao.totalNumberOfCards() + " Cards found");
+		} catch (SQLException e) {
+			//dummy statement in case retrieving total card count fails
+			numberCardsFound.setText(numberOfCardsFound + " out of many Cards found");
 			e.printStackTrace();
 		}
 	}

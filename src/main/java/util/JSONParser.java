@@ -1,5 +1,7 @@
 package util;
 
+import java.util.Arrays;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -22,6 +24,8 @@ public class JSONParser {
 		String cardSet = json.optString("set", "Card set not available");
 		String cardImageUrl = json.getJSONObject("image_uris").optString("normal", "Card Image not available");
 		String[] cardColorIdentity = convertJsonArray(json.optJSONArray("color_identity"));
+		//sort the Array to make it comparable later when searching the db
+		Arrays.sort(cardColorIdentity);
 		//save the information in our Card object
 		card.setCardName(cardName);
 		card.setCardType(cardType);

@@ -42,7 +42,7 @@ public class Card {
 	
 	//default constructor
 	public Card() {
-		this(0, "", "", "", "", "", 0, null, false, "");
+		this(0, "", "", "", "", "", 1, null, false, "");
 	}
 	
 	//dummy constructor for tests
@@ -109,19 +109,3 @@ public class Card {
 	public void setCardLanguage(String cardLanguage) { this.cardLanguage.set(cardLanguage); }
 	public StringProperty getCardLanguageProperty() { return this.cardLanguage; }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

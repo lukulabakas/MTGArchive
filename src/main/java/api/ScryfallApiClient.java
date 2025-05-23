@@ -16,7 +16,7 @@ public class ScryfallApiClient {
 
 	//takes a cardname and cardset as strings and returns the corresonding 
 	//cardname, cardset, cardtype, cardtext, cardcoloridentity and cardimageurl in a Card object
-	public Card fetchCardFromApi(String cardName, String cardSet) throws IOException, URISyntaxException {
+	public Card fetchCardFromApi(String cardName, String cardSet) throws IOException, URISyntaxException, InterruptedException {
 		//assemble our url for the request
 		//the given cardname is added, spaces replaced with "+"
 		//the given setname is added, in lower case
@@ -41,6 +41,9 @@ public class ScryfallApiClient {
 		}
 		//close the raeder
 		reader.close();
+		//api rules are to only send one request per certain ms
+		//to make sure this is not violated by repeated clicks on search etc. > add wait timer
+        Thread.sleep(100);
 		//response is json - needs to get parsed into a Card object
 		//parseCardFromJson takes a json as string and returns a Card object
 		return JSONParser.parseCardFromJson(response.toString());

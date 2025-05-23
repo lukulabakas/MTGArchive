@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -33,24 +34,16 @@ public class Main extends Application {
 			this.primaryStage = primaryStage;
 			this.primaryStage.setTitle("MTG Card Archive");
 			
+	        //set the application icon
+	        this.primaryStage.getIcons().add(new Image("/images/mtgIcon.png"));
 			initRootLayout();
 			showTabMain();
-			//test
-			ScryfallApiClient apiClient = new ScryfallApiClient();
-			try {
-				apiClient.fetchCardFromApi("Counterspell", "DSC");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (URISyntaxException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 	}
 	
 	//to execute upon application termination
 	@Override
 	public void stop() {
+		//close db connection
 		DBConnection.closeConnection();
 	}
 	
@@ -66,6 +59,10 @@ public class Main extends Application {
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
 			
+            //give the controller access to the main app
+            RootLayoutController controller = loader.getController();
+            controller.setMainApp(this);
+
 			//set the stage visible
 			primaryStage.show();
 		}catch(Exception e) {
