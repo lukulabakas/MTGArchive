@@ -21,7 +21,7 @@ The following columns are required to set up the database:
 	String cardName
 	//creature / artifact / etc.
 	String cardType
-	//all of the card text that is in the text box (oracle text)
+	//all of the card text that is in the text box
 	String cardText
 	//the set that the card was released in represented by a 3 letter combination
 	String cardSet
