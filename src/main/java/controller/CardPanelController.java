@@ -37,7 +37,7 @@ public class CardPanelController {
 	//reference to the parent FlowPane
 	private FlowPane flowPane;
 	//reference to the main application
-	private Main main;
+	private MainMTGArchive main;
 	
 	//contructor
 	public CardPanelController() {
@@ -50,7 +50,7 @@ public class CardPanelController {
 		
 	}
 	
-	public void setMainApp(Main main) {
+	public void setMainApp(MainMTGArchive main) {
 		this.main = main;
 	}
 	

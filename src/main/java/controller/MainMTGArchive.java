@@ -16,7 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import persistence.DBConnection;
 
-public class Main extends Application {
+public class MainMTGArchive extends Application {
 
 	private Stage primaryStage;
 	private BorderPane rootLayout;
@@ -52,7 +52,7 @@ public class Main extends Application {
 		try {
 			//load the root layout from the fxml file
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("/view/RootLayout.fxml"));
+			loader.setLocation(MainMTGArchive.class.getResource("/view/RootLayout.fxml"));
 			rootLayout = loader.load();
 			
 			//set the loaded rootlayout as the current scene
@@ -75,7 +75,7 @@ public class Main extends Application {
 		try {
 			//load the TabPane that will hold the Tabs
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("/view/TabMain.fxml"));
+			loader.setLocation(MainMTGArchive.class.getResource("/view/TabMain.fxml"));
 			TabPane tabMain = loader.load();
 			
 			//set the TabPane into the center of the root layout

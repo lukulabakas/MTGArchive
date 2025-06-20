@@ -9,10 +9,10 @@ import javafx.stage.Stage;
 public class RootLayoutController {
 
 	//reference to the main app
-	private Main main;
+	private MainMTGArchive main;
 	
 	//ger reference to main app
-	public void setMainApp(Main main) {
+	public void setMainApp(MainMTGArchive main) {
 		this.main = main;
 	}
 	

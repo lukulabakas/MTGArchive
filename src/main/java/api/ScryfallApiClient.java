@@ -25,11 +25,11 @@ public class ScryfallApiClient {
 				cardName.replace(" ", "+") + "&set=" + cardSet.toLowerCase() + "&lang=en";
 		//prepare the request / open connection
 		URL url = new URI(apiUrl).toURL();
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		HttpURLConnection ApiConn = (HttpURLConnection) url.openConnection();
 		//define request method (GET/POST/etc)
-		conn.setRequestMethod("GET");
+		ApiConn.setRequestMethod("GET");
 		//perform the API request
-		BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(ApiConn.getInputStream()));
 		//StringBuilder to assemble our response (json might be in several lines to be readable)
 		StringBuilder response = new StringBuilder();
 		//used to read the lines and append them to the reponse

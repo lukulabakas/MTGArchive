@@ -28,7 +28,7 @@ public class TabAddSingleCardsController {
 	@FXML
 	private ImageView cardImageView;
 	//main app reference
-	private Main main;
+	private MainMTGArchive main;
 	//saves the saerched card
 	private Card fetchedCard;
 	//info prompt for additional info
@@ -56,7 +56,7 @@ public class TabAddSingleCardsController {
 	}
 	
 	//save the main app reference
-	public void setMainApp(Main main) {
+	public void setMainApp(MainMTGArchive main) {
 		this.main = main;
 	}
 	

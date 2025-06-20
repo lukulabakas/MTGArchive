@@ -55,7 +55,7 @@ public class TabCardCollectionController {
 	private Label numberCardsFound;
 	
 	//reference to the main application
-	private Main main;
+	private MainMTGArchive main;
 
 	
 	//contructor
@@ -73,7 +73,7 @@ public class TabCardCollectionController {
 		flowPane.setVgap(5);
 	}
 	
-	public void setMainApp(Main main) {
+	public void setMainApp(MainMTGArchive main) {
 		this.main = main;
 	}
 	

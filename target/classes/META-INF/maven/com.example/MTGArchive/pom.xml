@@ -58,7 +58,7 @@
         <artifactId>javafx-maven-plugin</artifactId>
         <version>0.0.8</version>
         <configuration>
-          <mainClass>controller.Main</mainClass>
+          <mainClass>controller.MainMTGArchive</mainClass>
         </configuration>
         <executions>
           <execution>
@@ -76,6 +76,42 @@
         <release>22</release>
       </configuration>
     </plugin>
+      <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-jar-plugin</artifactId>
+    <version>3.3.0</version>
+    <configuration>
+      <archive>
+        <manifest>
+          <mainClass>controller.MainMTGArchive</mainClass>
+        </manifest>
+      </archive>
+    </configuration>
+  </plugin>
+  <plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-assembly-plugin</artifactId>
+  <version>3.6.0</version>
+  <configuration>
+    <descriptorRefs>
+      <descriptorRef>jar-with-dependencies</descriptorRef>
+    </descriptorRefs>
+    <archive>
+      <manifest>
+        <mainClass>controller.MainMTGArchive</mainClass>
+      </manifest>
+    </archive>
+  </configuration>
+  <executions>
+    <execution>
+      <id>make-assembly</id>
+      <phase>package</phase>
+      <goals>
+        <goal>single</goal>
+      </goals>
+    </execution>
+  </executions>
+</plugin>
     </plugins>
   </build>
 </project>

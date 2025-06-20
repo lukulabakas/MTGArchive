@@ -19,7 +19,7 @@ public class TabMainController {
 	private TabPane tabMain;
 
 	//reference to the main app
-	private Main main;
+	private MainMTGArchive main;
 	
 	//intilizes the tabs by loading the corresponding fxmls
 	@FXML
@@ -43,7 +43,7 @@ public class TabMainController {
 	}
 	
 	//save the main app reference
-	public void setMainApp(Main main) {
+	public void setMainApp(MainMTGArchive main) {
 		this.main = main;
 	}
 	
